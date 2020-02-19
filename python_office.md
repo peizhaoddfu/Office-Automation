@@ -21,4 +21,21 @@ print(a[0:4])
 ### 函数，调用第三方库:type();len();round(1.5456444,3);input();def.....;
 ##  办公自动化：
 ### xlsx文件：工作簿，工作表(sheet)，单元格  
-### xlrd 
+### xlrd  xlwt  
+  
+    import xlrd
+    xlsx = xlrd.open_workbook('文件目录+文件名')    
+    table = xlsx.sheet_by_index()
+    #table = xlsx.sheet_by_name('sheet名')  
+    print(table.cell_value(1,4))  
+    print(table.cell(1,4).value)
+    print(table.row(1)[4].value)  
+	
+    import xlwt
+    new_workbook = xlwt.Workbook()  
+    worksheet = new_workbook.add_sheet('sheet_test')  
+    worksheet.write(0,0,'test')  
+    nwe_workbook.sae('路径+文件名')  
+  
+  
+### xlutils 
