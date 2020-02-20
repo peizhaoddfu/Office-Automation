@@ -31,11 +31,48 @@ print(a[0:4])
     print(table.cell(1,4).value)
     print(table.row(1)[4].value)  
 	
+    #import xlwt
+    #new_workbook = xlwt.Workbook()  
+    #worksheet = new_workbook.add_sheet('sheet_test')  
+    #worksheet.write(0,0,'test')  
+    #nwe_workbook.save('路径+文件名')  
+  
+  
+### xlutils   
+  
+    from xlutils.copy import copy
+    import xlrd
     import xlwt
-    new_workbook = xlwt.Workbook()  
-    worksheet = new_workbook.add_sheet('sheet_test')  
-    worksheet.write(0,0,'test')  
-    nwe_workbook.sae('路径+文件名')  
-  
-  
-### xlutils 
+    
+    tem_excel = xlrd.open_workbook('/Users/tnjmytuu/Documents/test.xls',formatting_info=True)
+    tem_sheet = tem_excel.sheet_by_name('sheet_test')
+    
+    new_excel = copy(tem_excel)
+    new_sheet = new_excel.get_sheet(0)
+    
+    #设置格式
+    style = xlwt.XFStyle()
+    
+    #设置字体
+    font = xlwt.Font()
+    font.name = '微软雅黑'
+    font.bold = True
+    font.height = 360  #  字号22乘以80
+    style.font = font
+    
+    borders = xlwt.Borders()
+    borders.top = xlwt.Borders.THIN
+    borders.bottom = xlwt.Borders.THIN
+    borders.left = xlwt.Borders.THIN
+    borders.right = xlwt.Borders.THIN
+    style.borders = borders
+    
+    alignment = xlwt.Alignment()
+    alignment.horz = xlwt.Alignment.HORZ_CENTER
+    alignment.vert = xlwt.Alignment.VERT_CENTER
+    style.alignment = alignment
+    
+    new_sheet.write(2,1,12.style)
+    
+    new_excel.save('/Users/tnjmytuu/Documents/test_1.xls') 
+    
